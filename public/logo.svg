@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_1" data-name="Слой 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 914.29 1002.56">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #808080;
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: FranklinGothic-MediumItalic, 'Franklin Gothic Medium';
+        font-size: 858.91px;
+        font-style: italic;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="914.29" height="914.29" rx="177.49" ry="177.49"/>
+  <text class="cls-2" transform="translate(176.73 739.18)"><tspan x="0" y="0">K</tspan></text>
+</svg>
