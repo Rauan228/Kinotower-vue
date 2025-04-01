@@ -1,76 +1,132 @@
-# Nuxt 3 Minimal Starter
+# Kinotower — Пользовательская часть на Nuxt 3
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Описание
+**Kinotower** — это пользовательская часть веб-приложения, разработанного на Nuxt 3, предназначенная для просмотра информации о фильмах, управления пользовательскими профилями и взаимодействия с системой через удобный интерфейс. Приложение позволяет пользователям просматривать список фильмов, изучать подробности о каждом фильме, регистрироваться и входить в систему для доступа к персонализированным функциям. Проект интегрируется с бэкендом (например, Laravel API) для получения данных о фильмах, категориях, странах и профилях пользователей.
 
-## Setup
+---
 
-Make sure to install the dependencies:
+## Технологии
+- **Nuxt 3**: Фреймворк для серверного рендеринга на Vue.js.
+- **Pinia**: Управление состоянием приложения.
+- **TypeScript**: Статическая типизация для надежности кода.
+- **Axios**: HTTP-запросы к бэкенду.
+- **Node.js**: Среда выполнения для разработки и запуска.
 
+---
+
+## Структура проекта
+```
+C:\Users\Рауан\coding\kinotowerVA-main\
+├── .nuxt/                    # Сгенерированные Nuxt-файлы (не редактировать вручную)
+├── api/                      # API-логика для серверных запросов
+│   └── index.ts              # Основной файл серверных маршрутов
+├── layouts/                  # Макеты страниц
+│   └── default.vue           # Основной макет приложения
+├── node_modules/             # Зависимости проекта
+├── pages/                    # Страницы приложения
+│   ├── films/                # Страницы, связанные с фильмами
+│   │   └── [id].vue          # Динамическая страница с подробностями о фильме
+│   ├── index.vue             # Главная страница (список фильмов)
+│   ├── signin.vue            # Страница входа
+│   ├── signup.vue            # Страница регистрации
+│   └── user.vue              # Страница профиля пользователя
+├── public/                   # Статические файлы (изображения, шрифты и т.д.)
+├── server/                   # Серверная часть (Nitro)
+│   └── tsconfig.json         # Конфигурация TypeScript для серверной части
+├── stores/                   # Хранилища Pinia для управления состоянием
+│   ├── useAuthStore.ts       # Хранилище для аутентификации
+│   ├── useCategoriesStore.ts # Хранилище для категорий фильмов
+│   ├── useCountriesStore.ts  # Хранилище для стран
+│   ├── useDetailFilmStore.ts # Хранилище для детальной информации о фильмах
+│   ├── useFilmsStore.ts      # Хранилище для списка фильмов
+│   ├── useGendersStore.ts    # Хранилище для данных о полах (если используется)
+│   └── useProfileStore.ts    # Хранилище для профиля пользователя
+├── .gitignore                # Игнорируемые файлы для Git
+├── app.vue                   # Корневой компонент приложения
+├── nuxt.config.ts            # Конфигурация Nuxt
+├── package-lock.json         # Фиксация версий зависимостей
+├── package.json              # Описание проекта и скрипты
+├── README.md                 # Документация проекта
+└── tsconfig.json             # Конфигурация TypeScript для клиентской части
+```
+
+---
+
+## Требования
+- **Node.js**: Версия 18 или выше.
+- **npm**: Установлен вместе с Node.js.
+- **Бэкенд**: Laravel API (например, `kinotower-laravel-main`) на `http://127.0.0.1:8000` для получения данных.
+
+---
+
+## Установка и запуск
+
+### 1. Клонирование репозитория
+Склонируйте проект с GitHub (замените `<repository-url>` на URL вашего репозитория):
 ```bash
-# npm
+git clone https://github.com/Rauan228/Kinotower-vue
+cd kinotower-main
+```
+
+### 2. Установка зависимостей
+Установите все необходимые зависимости:
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+### 3. Настройка бэкенда
+Пользовательская часть Kinotower зависит от бэкенда для получения данных о фильмах и аутентификации. Настройте бэкенд (например, Laravel-проект):
+1. Перейдите в папку бэкенда:
+   ```bash
+   cd backend
+   ```
+2. Установите зависимости Composer:
+   ```bash
+   composer install
+   ```
+3. Настройте `.env`:
+   ```
+   APP_URL=http://localhost:8000
+   DB_CONNECTION=mysql
+   DB_HOST=127.127.126.50  # Или 127.0.0.1, в зависимости от конфигурации MySQL
+   DB_PORT=3306
+   DB_DATABASE=kinotower
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+4. Выполните миграции:
+   ```bash
+   php artisan migrate
+   ```
+5. Запустите сервер:
+   ```bash
+   php artisan serve
+   ```
 
-Start the development server on `http://localhost:3000`:
-
+### 4. Запуск пользовательской части
+Вернитесь в папку Nuxt-проекта и запустите приложение в режиме разработки:
 ```bash
-# npm
+cd C:\Users\Рауан\coding\kinotower-main
 npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+- Откройте браузер и перейдите по адресу: `http://localhost:3000`.
 
-## Production
+---
 
-Build the application for production:
+## Основные страницы
+- `/` — Главная страница с общим списком фильмов.
+- `/films/[id]` — Страница с подробной информацией о конкретном фильме.
+- `/signin` — Страница входа для зарегистрированных пользователей.
+- `/signup` — Страница регистрации нового пользователя.
+- `/user` — Профиль пользователя с персональными данными.
 
-```bash
-# npm
-npm run build
+---
 
-# pnpm
-pnpm run build
+## Использование
+1. **Просмотр фильмов**: На главной странице (`/`) отображается список доступных фильмов.
+2. **Детали фильма**: Перейдите на `/films/[id]`, чтобы узнать больше о конкретном фильме (например, описание, рейтинг, актеры).
+3. **Регистрация и вход**: Используйте `/signup` для создания учетной записи и `/signin` для входа.
+4. **Профиль**: Страница `/user` показывает информацию о текущем пользователе (после входа).
 
-# yarn
-yarn build
+---
 
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-# Kinotower-vue
